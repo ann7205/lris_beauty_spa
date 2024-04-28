@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>後台登入</title>
+<script type="Text/JavaScript"  src="https://lrisbeautyspa.com.tw/admin/js/jquery-2.2.3.js"></script>
+<style>
+body{ background-color:#f8f8ff; letter-spacing:2px; }
+div{ width:400px; margin:50px auto 0; }
+input{  border-radius:5px; height:30px; width:395px; border:1px solid #09f; margin-bottom:15px; padding-left:5px; background-color:#f1f1f1;}
+button{  background-color:#09f;border-radius:5px; width:400px; height:30px; border:1px solid #ccc; color:#FFF; letter-spacing:2px;}
+.error{ border:1px solid #f00; border-radius:5px; text-align:center; background-color:RGBA(100%,80%,80%,0.4); width:200px; height:50px; position:fixed; top:40%; left:50%; margin:-25px 0 0 -100px; display:none; }
+</style>
+
+</head>
+
+<body>
+<script>
+$(document).ready(function(){
+		
+	var search= document.location.search;
+	var error=search
+	if (error=="?error=1"){
+		
+		$('#error1').show();
+		}
+   	else if (error=="?error=2"){
+	   
+	  	$('#error2').show();
+	   }
+});
+
+$(function(){
+	$("*").click(function(){
+ 		 $("p").parent().fadeOut("slow");
+	});
+});
+
+$(function(){
+	$('button').click(function() {
+    var fid=$("#fid").val();
+	var pwd=$("#pwd").val();
+	
+        if(fid==''){
+            $('#error3').show(200);
+			
+			return false    
+        }
+		else if(pwd==''){
+			$('#error4').show(200);
+			return false
+        }
+		else {$('#form').submit();}	
+	});
+});
+</script>
+
+<div id="error1" class="error"><p>帳號或密碼錯誤</p></div>
+<div id="error2" class="error"><p>請先行登入</p></div>
+<div id="error3" class="error"><p>請輸入帳號</p></div>
+<div id="error4" class="error"><p>請輸入密碼</p></div>
+    <div>
+    <h1>登入後台系統</h1>
+        <form name="form" method="post" action="https://lrisbeautyspa.com.tw/admin/connect.php" id="form">
+        <input type="text" value="" title="輸入使用者名稱" alt="輸入使用者名稱" name="id"  id="fid" placeholder="輸入使用者名稱" autofocus >
+        <input type="password" value="" name="pwd" id="pwd" title="輸入密碼" alt="輸入密碼" placeholder="密碼" autofocus >
+        <button type="button"  id="button" onClick="check()">登入</button>
+        </form>
+    </div>
+</body>
+</html>
